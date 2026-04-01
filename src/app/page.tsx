@@ -1,7 +1,8 @@
 export default function Home() {
   return (
-    <main>
-      <h1>Home Page</h1>
+    <main className="border">
+      <h1>Welcome to the <span className="block">Frontend Quiz!</span></h1>
+      <p>Pick a subject to get started</p>
     </main>
   );
 }
