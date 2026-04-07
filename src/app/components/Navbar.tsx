@@ -18,10 +18,10 @@ export default function Navbar() {
   return (
     <div className="navbar pt-4">
       <div className="navbar-start gap-6">
-        <div>
+        <div className="flex justify-center items-center p-2 bg-(--purple-100) rounded-sm">
           <AccessibilityIcon
             className={clsx(
-              "w-12 h-12 text-(--purple-600) bg-(--purple-100) rounded-sm",
+              "text-(--purple-600)",
               currentPath === "/" && "hidden",
             )}
           />
