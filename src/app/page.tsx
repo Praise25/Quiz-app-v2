@@ -17,7 +17,7 @@ const rubikItalic = Rubik({
 
 export default function Home() {
   return (
-    <main className="mt-8">
+    <main className="mt-8 relative z-100">
       <header>
         <h1 className={`${rubikLight.className} text-[2.5rem]/[100%]`}>
           Welcome to the{" "}
