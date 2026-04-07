@@ -1,6 +1,8 @@
 import Navbar from "@/app/components/Navbar";
 import Image from "next/image";
 import semiCircleImg from "@/assets/semi-circle.png";
+import semiCircleImg2 from "@/assets/semi-circle-2.png";
+import semiCircleImg3 from "@/assets/semi-circle-3.png";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -21,8 +23,19 @@ export default function RootLayout({
         <Image
           src={semiCircleImg}
           alt="Semi-circle decoration"
-          className="absolute top-0 left-0 z-0"
+          className="absolute top-0 left-0 z-0 md:hidden"
           loading="eager"
+        />
+        <Image
+          src={semiCircleImg2}
+          alt="Semi-circle decoration at top left corner"
+          className="absolute top-0 left-0 z-0 hidden md:block"
+          loading="eager"
+        />
+        <Image
+          src={semiCircleImg3}
+          alt="Semi-circle decoration at bottom right corner"
+          className="absolute bottom-0 right-0 z-0 hidden xl:block"
         />
         <Navbar />
         {children}
