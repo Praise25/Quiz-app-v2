@@ -22,6 +22,7 @@ export default function RootLayout({
           src={semiCircleImg}
           alt="Semi-circle decoration"
           className="absolute top-0 left-0 z-0"
+          loading="eager"
         />
         <Navbar />
         {children}
