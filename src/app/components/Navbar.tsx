@@ -16,15 +16,15 @@ export default function Navbar() {
   const currentPath = usePathname();
 
   return (
-    <div className="navbar pt-4">
+    <div className="navbar pt-4 relative z-100">
       <div className="navbar-start gap-6">
-        <div className="flex justify-center items-center p-2 bg-(--purple-100) rounded-sm">
-          <AccessibilityIcon
-            className={clsx(
-              "text-(--purple-600)",
-              currentPath === "/" && "hidden",
-            )}
-          />
+        <div
+          className={clsx(
+            "flex justify-center items-center p-2 bg-(--purple-100) rounded-sm",
+            currentPath === "/" && "hidden",
+          )}
+        >
+          <AccessibilityIcon className="text-(--purple-600)" />
         </div>
         <p
           className={clsx(
