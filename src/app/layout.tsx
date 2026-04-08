@@ -24,7 +24,7 @@ export default function RootLayout({
         <Image
           src={semiCircleImg}
           alt="Semi-circle decoration"
-          className="absolute top-0 left-0 z-0 md:hidden"
+          className="absolute top-0 left-0 z-0 h-screen md:hidden"
           loading="eager"
         />
         <Image
