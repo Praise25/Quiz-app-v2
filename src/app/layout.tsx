@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`h-full antialiased`}>
-      <body className="min-h-full flex flex-col px-6 relative overflow-hidden md:px-28 lg:pt-12">
+      <body className="min-h-full flex flex-col px-6 pb-15 relative md:px-28 lg:pt-12">
         <Image
           src={semiCircleImg}
           alt="Semi-circle decoration"
