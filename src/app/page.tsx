@@ -1,10 +1,5 @@
-"use client";
-
-import LinkButton from "@/ui/LinkButton";
-
-import { motion } from "motion/react";
+import SubjectList from "./components/SubjectList";
 import { Rubik } from "next/font/google";
-import { SUBJECTS } from "@/data/consts";
 
 const rubikLight = Rubik({
   weight: "300",
@@ -39,30 +34,7 @@ export default function Home() {
           Pick a subject to get started.
         </p>
       </header>
-      <ul className="mt-10 flex flex-col gap-4 lg:flex-1 lg:mt-0 ">
-        {SUBJECTS.map((subject) => {
-          const Icon = subject.icon;
-          return (
-            <motion.li
-              key={subject.id}
-              whileHover={{
-                backgroundColor: subject.hexBackgroundColor,
-                borderColor: subject.hexForegroundColor,
-              }}
-              className="rounded-xl bg-(--white) border border-(--grey-50)"
-            >
-              <LinkButton className={`${rubikMedium.className} text-lg`}>
-                <div
-                  className={`mr-4 rounded-md p-2 ${subject.iconBackgroundColor}`}
-                >
-                  <Icon className={`${subject.iconColor}`} />
-                </div>
-                {subject.name}
-              </LinkButton>
-            </motion.li>
-          );
-        })}
-      </ul>
+      <SubjectList />
     </main>
   );
 }
