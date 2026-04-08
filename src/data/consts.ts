@@ -3,6 +3,16 @@ import CssIcon from "@/assets/css-icon.svg";
 import JsIcon from "@/assets/js-icon.svg";
 import AccessibilityIcon from "@/assets/accessibility-icon.svg";
 
+export interface Subject {
+  id: number;
+  name: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  iconColor: string;
+  iconBackgroundColor: string;
+  hexBackgroundColor: string;
+  hexForegroundColor: string;
+}
+
 export const SUBJECTS = [
   {
     id: 1,
