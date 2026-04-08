@@ -7,6 +7,8 @@ import clsx from "clsx";
 
 import { Rubik } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContextProvider";
 
 const rubik = Rubik({
   weight: "500",
@@ -14,17 +16,20 @@ const rubik = Rubik({
 
 export default function Navbar() {
   const currentPath = usePathname();
+  const { activeSubject } = useContext(AppContext);
+
+  const Icon = activeSubject?.icon || AccessibilityIcon;
 
   return (
     <div className="navbar pt-4 relative z-100">
       <div className="navbar-start gap-6">
         <div
           className={clsx(
-            "flex justify-center items-center p-2 bg-(--purple-100) rounded-sm",
+            `flex justify-center items-center p-2 ${activeSubject?.iconBackgroundColor} rounded-sm`,
             currentPath === "/" && "hidden",
           )}
         >
-          <AccessibilityIcon className="text-(--purple-600)" />
+          <Icon className={`${activeSubject?.iconColor}`} />
         </div>
         <p
           className={clsx(
@@ -32,7 +37,7 @@ export default function Navbar() {
             currentPath === "/" && "hidden",
           )}
         >
-          Accessibility
+          {activeSubject?.name}
         </p>
       </div>
       <div className="navbar-end">

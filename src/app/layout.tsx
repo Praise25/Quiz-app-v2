@@ -3,6 +3,7 @@ import Image from "next/image";
 import semiCircleImg from "@/assets/semi-circle.png";
 import semiCircleImg2 from "@/assets/semi-circle-2.png";
 import semiCircleImg3 from "@/assets/semi-circle-3.png";
+import AppContextProvider from "@/context/AppContextProvider";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -37,8 +38,10 @@ export default function RootLayout({
           alt="Semi-circle decoration at bottom right corner"
           className="absolute bottom-0 right-0 z-0 hidden xl:block"
         />
-        <Navbar />
-        {children}
+        <AppContextProvider>
+          <Navbar />
+          {children}
+        </AppContextProvider>
       </body>
     </html>
   );
