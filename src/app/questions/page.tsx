@@ -84,7 +84,7 @@ export default function Questions() {
       </ul>
 
       <button
-        className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-[3.5rem] p-4 mt-4 mb-12 rounded-xl bg-(--purple-600)`}
+        className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 mb-12 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`}
       >
         Submit Answer
       </button>

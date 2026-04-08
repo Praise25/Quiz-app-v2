@@ -11,6 +11,7 @@ export interface Subject {
   iconBackgroundColor: string;
   hexBackgroundColor: string;
   hexForegroundColor: string;
+  buttonBackgroundColor: string;
 }
 
 export const SUBJECTS = [
@@ -21,7 +22,8 @@ export const SUBJECTS = [
     iconColor: "text-(--orange-400)",
     iconBackgroundColor: "bg-(--orange-50)",
     hexBackgroundColor: "#fff5ed",
-    hexForegroundColor: "#ff7e35"
+    hexForegroundColor: "#ff7e35",
+    buttonBackgroundColor: "bg-(--orange-400)"
   },
   {
     id: 2,
@@ -30,7 +32,8 @@ export const SUBJECTS = [
     iconColor: "text-(--green-500)",
     iconBackgroundColor: "bg-(--green-100)",
     hexBackgroundColor: "#e0fdef",
-    hexForegroundColor: "#2fd887"
+    hexForegroundColor: "#2fd887",
+    buttonBackgroundColor: "bg-(--green-500)"
   },
   {
     id: 3,
@@ -39,7 +42,8 @@ export const SUBJECTS = [
     iconColor: "text-(--blue-500)",
     iconBackgroundColor: "bg-(--blue-50)",
     hexBackgroundColor: "#ebf0ff",
-    hexForegroundColor: "#306aff"
+    hexForegroundColor: "#306aff",
+    buttonBackgroundColor: "bg-(--blue-500)"
   },
   {
     id: 4,
@@ -48,6 +52,7 @@ export const SUBJECTS = [
     iconColor: "text-(--purple-600)",
     iconBackgroundColor: "bg-(--purple-100)",
     hexBackgroundColor: "#f6e7ff",
-    hexForegroundColor: "#a729f5"
+    hexForegroundColor: "#a729f5",
+    buttonBackgroundColor: "bg-(--purple-600)"
   },
 ];
