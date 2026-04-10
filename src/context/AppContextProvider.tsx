@@ -3,6 +3,7 @@
 import { createContext } from "react";
 import { useState } from "react";
 import { type Subject } from "@/data/consts";
+import { getSubject } from "@/utils/processData";
 
 type Theme = "light" | "dark";
 
@@ -34,8 +35,13 @@ export default function AppContextProvider({
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  function selectSubject(subject: Subject) {
-    setActiveSubject(subject);
+  async function selectSubject(subject: Subject) {
+    const foundSubject = await getSubject(subject.title);
+    // console.log("Found subject:", foundSubject);
+    // console.log("Subject passed to selectSubject:", subject);
+    // console.log("Merged subject:", { ...subject, ...foundSubject });
+
+    setActiveSubject({ ...subject, ...foundSubject });
   }
 
   const ctxValue: AppContextType = {

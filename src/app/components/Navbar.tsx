@@ -37,7 +37,7 @@ export default function Navbar() {
             currentPath === "/" && "hidden",
           )}
         >
-          {activeSubject?.name}
+          {activeSubject?.title}
         </p>
       </div>
       <div className="navbar-end">

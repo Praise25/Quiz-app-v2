@@ -42,7 +42,7 @@ export default function SubjectList() {
               >
                 <Icon className={`${subject.iconColor}`} />
               </div>
-              {subject.name}
+              {subject.title}
             </LinkButton>
           </motion.li>
         );
