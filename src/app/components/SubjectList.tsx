@@ -20,7 +20,7 @@ export default function SubjectList() {
   }
 
   return (
-    <ul className="mt-10 flex flex-col gap-4 lg:flex-1 lg:mt-0 ">
+    <ul className="mt-10 flex flex-col gap-4 lg:flex-1 lg:mt-0">
       {SUBJECTS.map((subject) => {
         const Icon = subject.icon;
         return (
