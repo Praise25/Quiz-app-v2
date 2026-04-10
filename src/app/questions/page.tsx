@@ -29,6 +29,16 @@ export default function Questions() {
     answer: "",
   };
 
+  function handleChangeQuestion() {
+    setCurrentQuestionIndex((prev) => {
+      if (prev < questions.length - 1) {
+        return prev + 1;
+      } else {
+        return 0; // or reset to 0 if you want to loop back to the first question
+      }
+    });
+  }
+
   return (
     <main className="mt-8 relative z-100 lg:flex lg:mt-12 lg:gap-16 xl:gap-32">
       <div className="lg:flex lg:flex-col lg:flex-1 lg:justify-between">
@@ -48,8 +58,8 @@ export default function Questions() {
         <div className="flex border-6 border-white rounded-full lg:mb-20 lg:border-2">
           <progress
             className={`progress progress-primary w-full ${activeSubject?.iconColor} bg-(--white)`}
-            value="40"
-            max="100"
+            value={`${activeQuestion.id}`}
+            max={`${questions.length}`}
           ></progress>
         </div>
       </div>
@@ -77,6 +87,7 @@ export default function Questions() {
 
         <button
           className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`}
+          onClick={handleChangeQuestion}
         >
           Submit Answer
         </button>
