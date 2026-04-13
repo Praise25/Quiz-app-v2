@@ -88,12 +88,15 @@ export default function Questions() {
           ))}
         </ul>
 
-        <button
+        <motion.button
           className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`}
           onClick={handleChangeQuestion}
+          whileHover={{
+            backgroundColor: `var(${activeSubject?.hoverBackgroundColor})`,
+          }}
         >
           Submit Answer
-        </button>
+        </motion.button>
       </div>
     </main>
   );
