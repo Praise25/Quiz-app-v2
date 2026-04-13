@@ -5,7 +5,7 @@ import LinkButton from "@/ui/LinkButton";
 import { Rubik } from "next/font/google";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 const rubikMedium = Rubik({
   weight: "500",
@@ -28,6 +28,17 @@ export default function Questions() {
     question: "No question available",
     options: [],
     answer: "",
+  };
+
+  const listItemVariant: Variants = {
+    hover: { borderColor: `${activeSubject?.hexForegroundColor}` },
+  };
+
+  const optionLetterVariant: Variants = {
+    hover: {
+      backgroundColor: `${activeSubject?.hexForegroundColor}`,
+      color: "var(--white)",
+    },
   };
 
   function handleChangeQuestion() {
@@ -70,21 +81,24 @@ export default function Questions() {
       <div className="lg:flex lg:flex-col lg:flex-1">
         <ul className="mt-10 flex flex-col gap-4 lg:flex-1 lg:mt-0 ">
           {activeQuestion.options.map((option, index) => (
-            <li
+            <motion.li
               key={`${activeQuestion.id}-${index}`}
-              className="rounded-xl bg-(--white) border border-(--grey-50)"
+              className="rounded-3xl bg-(--white) border-3 border-(--grey-50)"
+              variants={listItemVariant}
+              whileHover="hover"
             >
               <LinkButton
                 className={`${rubikMedium.className} text-lg lg:text-[1.375rem]`}
               >
-                <div
+                <motion.div
                   className={`flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 bg-(--grey-50) text-(--grey-500)`}
+                  variants={optionLetterVariant}
                 >
                   {optionLetters[index]}
-                </div>
+                </motion.div>
                 {option}
               </LinkButton>
-            </li>
+            </motion.li>
           ))}
         </ul>
 
