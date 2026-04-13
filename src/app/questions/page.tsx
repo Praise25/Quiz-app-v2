@@ -5,6 +5,7 @@ import LinkButton from "@/ui/LinkButton";
 import { Rubik } from "next/font/google";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
+import { motion } from "motion/react";
 
 const rubikMedium = Rubik({
   weight: "500",
@@ -55,12 +56,14 @@ export default function Questions() {
           </h1>
         </div>
 
-        <div className="flex border-6 border-white rounded-full lg:mb-20 lg:border-2">
-          <progress
-            className={`progress progress-primary w-full ${activeSubject?.iconColor} bg-(--white)`}
-            value={`${activeQuestion.id}`}
-            max={`${questions.length}`}
-          ></progress>
+        <div className="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{
+              width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
+            }}
+            className={`h-2 rounded-full ${activeSubject?.buttonBackgroundColor}`}
+          ></motion.div>
         </div>
       </div>
 
