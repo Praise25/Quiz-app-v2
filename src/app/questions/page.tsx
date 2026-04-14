@@ -1,6 +1,7 @@
 "use client";
 
 import Option from "./components/Option";
+import ProgressBar from "@/ui/ProgressBar";
 
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
@@ -22,7 +23,7 @@ export default function Questions() {
     answer: "",
   };
 
-   function handleSelectOption(option: string) {
+  function handleSelectOption(option: string) {
     setSelectedOption(option);
   }
 
@@ -53,15 +54,14 @@ export default function Questions() {
         </div>
 
         {/* custom progress bar to enable animation in it */}
-        <div className="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2">
-          <motion.div
-            initial={{ width: "0" }}
-            animate={{
-              width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
-            }}
-            className={`h-2 rounded-full ${activeSubject?.buttonBackgroundColor}`}
-          ></motion.div>
-        </div>
+        <ProgressBar
+          outerDivStyle="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2"
+          innerDivStyle={`h-2 rounded-full ${activeSubject?.buttonBackgroundColor}`}
+          initial={{ width: "0" }}
+          animate={{
+            width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
+          }}
+        />
       </div>
 
       <div className="lg:flex lg:flex-col lg:flex-1">
