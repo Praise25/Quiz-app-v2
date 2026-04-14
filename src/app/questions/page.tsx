@@ -1,11 +1,12 @@
 "use client";
 
 import LinkButton from "@/ui/LinkButton";
+import clsx from "clsx";
 
 import { Rubik } from "next/font/google";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
-import { motion, type Variants } from "motion/react";
+import { motion } from "motion/react";
 
 const rubikMedium = Rubik({
   weight: "500",
@@ -21,6 +22,9 @@ const optionLetters = ["A", "B", "C", "D", "E"];
 export default function Questions() {
   const { activeSubject } = useContext(AppContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
+  const [hoveredOption, setHoveredOption] = useState("");
 
   const questions = activeSubject?.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
@@ -28,17 +32,6 @@ export default function Questions() {
     question: "No question available",
     options: [],
     answer: "",
-  };
-
-  const listItemVariant: Variants = {
-    hover: { borderColor: `${activeSubject?.hexForegroundColor}` },
-  };
-
-  const optionLetterVariant: Variants = {
-    hover: {
-      backgroundColor: `${activeSubject?.hexForegroundColor}`,
-      color: "var(--white)",
-    },
   };
 
   function handleChangeQuestion() {
@@ -49,6 +42,19 @@ export default function Questions() {
         return 0; // or reset to 0 if you want to loop back to the first question
       }
     });
+  }
+
+  function handleSelectOption(option: string) {
+    setSelectedOption(option);
+  }
+
+  function handleHoverStart(option: string) {
+    setHoveredOption(option);
+    setIsHovering(true);
+  }
+
+  function handleHoverEnd() {
+    setIsHovering(false);
   }
 
   return (
@@ -67,9 +73,10 @@ export default function Questions() {
           </h1>
         </div>
 
+        {/* custom progress bar to enable animation in it */}
         <div className="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2">
           <motion.div
-            initial={{ width: 0 }}
+            initial={{ width: "0" }}
             animate={{
               width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
             }}
@@ -83,16 +90,30 @@ export default function Questions() {
           {activeQuestion.options.map((option, index) => (
             <motion.li
               key={`${activeQuestion.id}-${index}`}
-              className="rounded-3xl bg-(--white) border-3 border-(--grey-50)"
-              variants={listItemVariant}
-              whileHover="hover"
+              className={clsx(
+                `rounded-3xl bg-(--white) border-3`,
+                isHovering && hoveredOption === option
+                  ? `${activeSubject?.hoverBorderColor}`
+                  : selectedOption === option
+                    ? `${activeSubject?.hoverBorderColor}`
+                    : "border-(--grey-50)",
+              )}
+              onHoverStart={() => handleHoverStart(option)}
+              onHoverEnd={() => handleHoverEnd()}
             >
               <LinkButton
-                className={`${rubikMedium.className} text-lg lg:text-[1.375rem]`}
+                className={`${rubikMedium.className} text-lg lg:text-[1.375rem] rounded-3xl`}
+                onClick={() => handleSelectOption(option)}
               >
                 <motion.div
-                  className={`flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 bg-(--grey-50) text-(--grey-500)`}
-                  variants={optionLetterVariant}
+                  className={clsx(
+                    `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2`,
+                    isHovering && hoveredOption === option
+                      ? `${activeSubject?.buttonBackgroundColor} text-(--white)`
+                      : selectedOption === option
+                        ? `${activeSubject?.buttonBackgroundColor} text-(--white)`
+                        : "bg-(--grey-50) text-(--grey-500)",
+                  )}
                 >
                   {optionLetters[index]}
                 </motion.div>

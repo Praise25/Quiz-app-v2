@@ -20,6 +20,7 @@ export interface Subject {
   hexForegroundColor: string;
   buttonBackgroundColor: string;
   hoverBackgroundColor: string;
+  hoverBorderColor: string;
 }
 
 export const SUBJECTS = [
@@ -33,6 +34,7 @@ export const SUBJECTS = [
     hexForegroundColor: "#ff7e35",
     buttonBackgroundColor: "bg-(--orange-400)",
     hoverBackgroundColor: "--orange-550",
+    hoverBorderColor: "border-(--orange-400)"
   },
   {
     id: 2,
@@ -44,6 +46,7 @@ export const SUBJECTS = [
     hexForegroundColor: "#2fd887",
     buttonBackgroundColor: "bg-(--green-500)",
     hoverBackgroundColor: "--green-650",
+    hoverBorderColor: "border-(--green-500)",
   },
   {
     id: 3,
@@ -55,6 +58,7 @@ export const SUBJECTS = [
     hexForegroundColor: "#306aff",
     buttonBackgroundColor: "bg-(--blue-500)",
     hoverBackgroundColor: "--blue-650",
+    hoverBorderColor: "border-(--blue-500)",
   },
   {
     id: 4,
@@ -66,5 +70,6 @@ export const SUBJECTS = [
     hexForegroundColor: "#a729f5",
     buttonBackgroundColor: "bg-(--purple-600)",
     hoverBackgroundColor: "--purple-750",
+    hoverBorderColor: "border-(--purple-600)",
   },
 ];
