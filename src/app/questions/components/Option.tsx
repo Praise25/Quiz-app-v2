@@ -38,7 +38,7 @@ export default function Option({
   return (
     <motion.li
       className={clsx(
-        `rounded-3xl bg-(--white) border-3`,
+        `rounded-3xl bg-(--white) border-3 transition`,
         isHovering && hoveredOption === option
           ? `${subject?.hoverBorderColor}`
           : selectedOption === option
@@ -54,7 +54,7 @@ export default function Option({
       >
         <motion.div
           className={clsx(
-            `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2`,
+            `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 transition`,
             isHovering && hoveredOption === option
               ? `${subject?.buttonBackgroundColor} text-(--white)`
               : selectedOption === option
