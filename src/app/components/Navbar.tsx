@@ -6,14 +6,10 @@ import AccessibilityIcon from "@/assets/accessibility-icon.svg";
 import clsx from "clsx";
 import Link from "next/link";
 
-import { Rubik } from "next/font/google";
+import { rubikMedium } from "@/fonts/rubikFonts";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContextProvider";
-
-const rubik = Rubik({
-  weight: "500",
-});
 
 export default function Navbar() {
   const currentPath = usePathname();
@@ -35,7 +31,7 @@ export default function Navbar() {
           </div>
           <p
             className={clsx(
-              `${rubik.className} text-(--blue-900) text-2xl`,
+              `${rubikMedium.className} text-(--blue-900) text-2xl`,
               currentPath === "/" && "hidden",
             )}
           >

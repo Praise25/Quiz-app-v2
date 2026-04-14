@@ -2,15 +2,11 @@
 
 import LinkButton from "@/ui/LinkButton";
 
-import { Rubik } from "next/font/google";
+import { rubikMedium } from "@/fonts/rubikFonts";
 import { motion } from "motion/react";
 import { Subject, SUBJECTS } from "@/data/consts";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContextProvider";
-
-const rubikMedium = Rubik({
-  weight: "500",
-});
 
 export default function SubjectList() {
   const { selectSubject } = useContext(AppContext);

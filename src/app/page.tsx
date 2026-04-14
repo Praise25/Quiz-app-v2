@@ -1,18 +1,5 @@
 import SubjectList from "./components/SubjectList";
-import { Rubik } from "next/font/google";
-
-const rubikLight = Rubik({
-  weight: "300",
-});
-
-const rubikMedium = Rubik({
-  weight: "500",
-});
-
-const rubikItalic = Rubik({
-  weight: "400",
-  style: "italic",
-});
+import { rubikLight, rubikMedium, rubikItalic } from "@/fonts/rubikFonts";
 
 export default function Home() {
   return (
