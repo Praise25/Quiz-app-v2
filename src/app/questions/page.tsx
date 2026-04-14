@@ -1,30 +1,18 @@
 "use client";
 
-import LinkButton from "@/ui/LinkButton";
-import clsx from "clsx";
+import Option from "./components/Option";
 
-import { Rubik } from "next/font/google";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
 import { motion } from "motion/react";
-
-const rubikMedium = Rubik({
-  weight: "500",
-});
-
-const rubikItalic = Rubik({
-  weight: "400",
-  style: "italic",
-});
+import { rubikItalic, rubikMedium } from "@/fonts/rubikFonts";
 
 const optionLetters = ["A", "B", "C", "D", "E"];
 
 export default function Questions() {
   const { activeSubject } = useContext(AppContext);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
-  const [isHovering, setIsHovering] = useState(false);
-  const [hoveredOption, setHoveredOption] = useState("");
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const questions = activeSubject?.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
@@ -34,6 +22,10 @@ export default function Questions() {
     answer: "",
   };
 
+   function handleSelectOption(option: string) {
+    setSelectedOption(option);
+  }
+
   function handleChangeQuestion() {
     setCurrentQuestionIndex((prev) => {
       if (prev < questions.length - 1) {
@@ -42,19 +34,6 @@ export default function Questions() {
         return 0; // or reset to 0 if you want to loop back to the first question
       }
     });
-  }
-
-  function handleSelectOption(option: string) {
-    setSelectedOption(option);
-  }
-
-  function handleHoverStart(option: string) {
-    setHoveredOption(option);
-    setIsHovering(true);
-  }
-
-  function handleHoverEnd() {
-    setIsHovering(false);
   }
 
   return (
@@ -88,44 +67,21 @@ export default function Questions() {
       <div className="lg:flex lg:flex-col lg:flex-1">
         <ul className="mt-10 flex flex-col gap-4 lg:flex-1 lg:mt-0 ">
           {activeQuestion.options.map((option, index) => (
-            <motion.li
+            <Option
               key={`${activeQuestion.id}-${index}`}
-              className={clsx(
-                `rounded-3xl bg-(--white) border-3`,
-                isHovering && hoveredOption === option
-                  ? `${activeSubject?.hoverBorderColor}`
-                  : selectedOption === option
-                    ? `${activeSubject?.hoverBorderColor}`
-                    : "border-(--grey-50)",
-              )}
-              onHoverStart={() => handleHoverStart(option)}
-              onHoverEnd={() => handleHoverEnd()}
-            >
-              <LinkButton
-                className={`${rubikMedium.className} text-lg lg:text-[1.375rem] rounded-3xl`}
-                onClick={() => handleSelectOption(option)}
-              >
-                <motion.div
-                  className={clsx(
-                    `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2`,
-                    isHovering && hoveredOption === option
-                      ? `${activeSubject?.buttonBackgroundColor} text-(--white)`
-                      : selectedOption === option
-                        ? `${activeSubject?.buttonBackgroundColor} text-(--white)`
-                        : "bg-(--grey-50) text-(--grey-500)",
-                  )}
-                >
-                  {optionLetters[index]}
-                </motion.div>
-                {option}
-              </LinkButton>
-            </motion.li>
+              subject={activeSubject}
+              letter={optionLetters[index]}
+              option={option}
+              selectedOption={selectedOption}
+              onClick={() => handleSelectOption(option)}
+            />
           ))}
         </ul>
 
         <motion.button
           className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`}
           onClick={handleChangeQuestion}
+          type="button"
           whileHover={{
             backgroundColor: `var(${activeSubject?.hoverBackgroundColor})`,
           }}
