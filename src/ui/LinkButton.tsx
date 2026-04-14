@@ -17,7 +17,7 @@ export default function LinkButton({
     <Link
       href={href}
       onClick={onClick}
-      className={`${className} flex items-center p-4 h-18 rounded-xl shadow-[0_16px_40px_rgb(143,160,193,14%)]`}
+      className={`${className} flex items-center p-4 h-18 shadow-[0_16px_40px_rgb(143,160,193,14%)]`}
     >
       {children}
     </Link>

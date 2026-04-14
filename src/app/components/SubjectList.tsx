@@ -33,7 +33,7 @@ export default function SubjectList() {
             className="rounded-xl bg-(--white) border border-(--grey-50)"
           >
             <LinkButton
-              className={`${rubikMedium.className} text-lg`}
+              className={`${rubikMedium.className} text-lg rounded-xl`} 
               onClick={() => handleSelectSubject(subject)}
               href="/questions"
             >
