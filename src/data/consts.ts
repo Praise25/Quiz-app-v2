@@ -33,7 +33,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#fff5ed",
     hexForegroundColor: "#ff7e35",
     buttonBackgroundColor: "bg-(--orange-400)",
-    hoverBackgroundColor: "--orange-550",
+    hoverBackgroundColor: "bg-(--orange-550)",
     hoverBorderColor: "border-(--orange-400)"
   },
   {
@@ -45,7 +45,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#e0fdef",
     hexForegroundColor: "#2fd887",
     buttonBackgroundColor: "bg-(--green-500)",
-    hoverBackgroundColor: "--green-650",
+    hoverBackgroundColor: "bg-(--green-650)",
     hoverBorderColor: "border-(--green-500)",
   },
   {
@@ -57,7 +57,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#ebf0ff",
     hexForegroundColor: "#306aff",
     buttonBackgroundColor: "bg-(--blue-500)",
-    hoverBackgroundColor: "--blue-650",
+    hoverBackgroundColor: "bg-(--blue-650)",
     hoverBorderColor: "border-(--blue-500)",
   },
   {
@@ -69,7 +69,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#f6e7ff",
     hexForegroundColor: "#a729f5",
     buttonBackgroundColor: "bg-(--purple-600)",
-    hoverBackgroundColor: "--purple-750",
+    hoverBackgroundColor: "bg-(--purple-750)",
     hoverBorderColor: "border-(--purple-600)",
   },
 ];

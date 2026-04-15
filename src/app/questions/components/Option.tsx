@@ -96,6 +96,8 @@ export default function Option({
                   : "hidden"
                 : "hidden",
             )}
+            width={40}
+            height={40}
           />
         </div>
       </LinkButton>

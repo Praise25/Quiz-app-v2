@@ -2,6 +2,7 @@
 
 import Option from "./components/Option";
 import ProgressBar from "@/app/components/ui/ProgressBar";
+import DismissIcon from "@/assets/dismiss.svg";
 import clsx from "clsx";
 
 import { useContext, useState } from "react";
@@ -16,6 +17,8 @@ export default function Questions() {
   const [selectedOption, setSelectedOption] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hasAttemptedSubmission, setHasAttemptedSubmission] = useState(false);
 
   const questions = activeSubject?.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
@@ -32,6 +35,8 @@ export default function Questions() {
   }
 
   function handleSubmitAnswer() {
+    setHasAttemptedSubmission(true);
+
     if (!hasSubmitted && selectedOption) {
       setHasSubmitted(true);
     }
@@ -39,6 +44,7 @@ export default function Questions() {
     if (hasSubmitted) {
       setHasSubmitted(false);
       setSelectedOption("");
+      setHasAttemptedSubmission(false);
       setCurrentQuestionIndex((prev) => {
         if (prev < questions.length - 1) {
           return prev + 1;
@@ -47,6 +53,18 @@ export default function Questions() {
         }
       });
     }
+  }
+
+  function handleHoverStart() {
+    if (hasAttemptedSubmission && !selectedOption) {
+      return;
+    } else {
+      setIsHovering(true);
+    }
+  }
+
+  function handleHoverEnd() {
+    setIsHovering(false);
   }
 
   return (
@@ -94,16 +112,26 @@ export default function Questions() {
 
         <motion.button
           className={clsx(
-            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`,
+            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8`,
+            isHovering && activeSubject?.hoverBackgroundColor,
+            hasAttemptedSubmission && !selectedOption && "opacity-50",
           )}
           onClick={handleSubmitAnswer}
           type="button"
-          whileHover={{
-            backgroundColor: `var(${activeSubject?.hoverBackgroundColor})`,
-          }}
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
         >
           {hasSubmitted ? "Next Question" : "Submit Answer"}
         </motion.button>
+        <div
+          className={clsx(
+            "flex justify-center items-center text-(--red-500) pl-1 gap-2",
+            hasAttemptedSubmission && !selectedOption ? "block" : "hidden",
+          )}
+        >
+          <DismissIcon width="30" height="30" />
+          <p>Please select an answer</p>
+        </div>
       </div>
     </main>
   );
