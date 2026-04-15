@@ -5,11 +5,10 @@ import LinkButton from "@/app/components/ui/LinkButton";
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { motion } from "motion/react";
 import { Subject, SUBJECTS } from "@/data/consts";
-import { useContext } from "react";
-import { AppContext } from "@/context/AppContextProvider";
+import { useAppContext } from "@/hooks/useAppContext";
 
 export default function SubjectList() {
-  const { selectSubject } = useContext(AppContext);
+  const { selectSubject } = useAppContext();
 
   function handleSelectSubject(subject: Subject) {
     selectSubject(subject);

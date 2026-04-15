@@ -5,22 +5,22 @@ import ProgressBar from "@/app/components/ui/ProgressBar";
 import DismissIcon from "@/assets/dismiss.svg";
 import clsx from "clsx";
 
-import { useContext, useState } from "react";
-import { AppContext } from "@/context/AppContextProvider";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { rubikItalic, rubikMedium } from "@/fonts/rubikFonts";
+import { useAppContext } from "@/hooks/useAppContext";
 
 const optionLetters = ["A", "B", "C", "D", "E"];
 
 export default function Questions() {
-  const { activeSubject } = useContext(AppContext);
+  const { activeSubject } = useAppContext();
   const [selectedOption, setSelectedOption] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [hasAttemptedSubmission, setHasAttemptedSubmission] = useState(false);
 
-  const questions = activeSubject?.questions || [];
+  const questions = activeSubject.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
     id: 0,
     question: "No question available",
@@ -86,7 +86,7 @@ export default function Questions() {
         {/* custom progress bar to enable animation in it */}
         <ProgressBar
           outerDivStyle="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2"
-          innerDivStyle={`h-2 rounded-full ${activeSubject?.buttonBackgroundColor}`}
+          innerDivStyle={`h-2 rounded-full ${activeSubject.buttonBackgroundColor}`}
           initial={{ width: "0" }}
           animate={{
             width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
@@ -112,8 +112,8 @@ export default function Questions() {
 
         <motion.button
           className={clsx(
-            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8`,
-            isHovering && activeSubject?.hoverBackgroundColor,
+            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8`,
+            isHovering && activeSubject.hoverBackgroundColor,
             hasAttemptedSubmission && !selectedOption && "opacity-50",
           )}
           onClick={handleSubmitAnswer}

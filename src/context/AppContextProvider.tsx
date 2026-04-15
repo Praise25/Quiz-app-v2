@@ -10,18 +10,11 @@ type Theme = "light" | "dark";
 interface AppContextType {
   theme: Theme;
   toggleTheme: () => void;
-  activeSubject: Subject | null;
+  activeSubject: Subject;
   selectSubject: (subject: Subject) => void;
 }
 
-const initialValues: AppContextType = {
-  theme: "light",
-  toggleTheme: () => {},
-  activeSubject: null,
-  selectSubject: () => {},
-}
-
-export const AppContext = createContext(initialValues);
+export const AppContext = createContext<AppContextType | null>(null);
 
 export default function AppContextProvider({
   children,
@@ -29,7 +22,7 @@ export default function AppContextProvider({
   children: React.ReactNode;
 }) {
   const [theme, setTheme] = useState<Theme>("light");
-  const [activeSubject, setActiveSubject] = useState<Subject | null>(null);
+  const [activeSubject, setActiveSubject] = useState<Subject>({} as Subject);
 
   function toggleTheme() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
