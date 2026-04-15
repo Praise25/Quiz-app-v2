@@ -1,6 +1,6 @@
 "use client";
 
-import LinkButton from "@/ui/LinkButton";
+import LinkButton from "@/app/components/ui/LinkButton";
 
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { motion } from "motion/react";

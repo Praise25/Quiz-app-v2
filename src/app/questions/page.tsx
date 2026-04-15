@@ -1,7 +1,7 @@
 "use client";
 
 import Option from "./components/Option";
-import ProgressBar from "@/ui/ProgressBar";
+import ProgressBar from "@/app/components/ui/ProgressBar";
 import clsx from "clsx";
 
 import { useContext, useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 
-import LinkButton from "@/ui/LinkButton";
+import LinkButton from "@/app/components/ui/LinkButton";
 import clsx from "clsx";
 import CheckmarkIcon from "@/assets/checkmark.svg";
 import DismissIcon from "@/assets/dismiss.svg";
