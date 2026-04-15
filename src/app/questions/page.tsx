@@ -2,6 +2,7 @@
 
 import Option from "./components/Option";
 import ProgressBar from "@/ui/ProgressBar";
+import clsx from "clsx";
 
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContextProvider";
@@ -14,6 +15,7 @@ export default function Questions() {
   const { activeSubject } = useContext(AppContext);
   const [selectedOption, setSelectedOption] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const questions = activeSubject?.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
@@ -24,17 +26,27 @@ export default function Questions() {
   };
 
   function handleSelectOption(option: string) {
-    setSelectedOption(option);
+    if (!hasSubmitted) {
+      setSelectedOption(option);
+    }
   }
 
-  function handleChangeQuestion() {
-    setCurrentQuestionIndex((prev) => {
-      if (prev < questions.length - 1) {
-        return prev + 1;
-      } else {
-        return 0; // or reset to 0 if you want to loop back to the first question
-      }
-    });
+  function handleSubmitAnswer() {
+    if (!hasSubmitted && selectedOption) {
+      setHasSubmitted(true);
+    }
+
+    if (hasSubmitted) {
+      setHasSubmitted(false);
+      setSelectedOption("");
+      setCurrentQuestionIndex((prev) => {
+        if (prev < questions.length - 1) {
+          return prev + 1;
+        } else {
+          return 0; // or reset to 0 if you want to loop back to the first question
+        }
+      });
+    }
   }
 
   return (
@@ -73,20 +85,24 @@ export default function Questions() {
               letter={optionLetters[index]}
               option={option}
               selectedOption={selectedOption}
+              correctAnswer={activeQuestion.answer}
+              hasSubmitted={hasSubmitted}
               onClick={() => handleSelectOption(option)}
             />
           ))}
         </ul>
 
         <motion.button
-          className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`}
-          onClick={handleChangeQuestion}
+          className={clsx(
+            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 mt-4 rounded-xl ${activeSubject?.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)]`,
+          )}
+          onClick={handleSubmitAnswer}
           type="button"
           whileHover={{
             backgroundColor: `var(${activeSubject?.hoverBackgroundColor})`,
           }}
         >
-          Submit Answer
+          {hasSubmitted ? "Next Question" : "Submit Answer"}
         </motion.button>
       </div>
     </main>

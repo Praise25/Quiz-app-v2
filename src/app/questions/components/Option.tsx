@@ -2,6 +2,8 @@
 
 import LinkButton from "@/ui/LinkButton";
 import clsx from "clsx";
+import CheckmarkIcon from "@/assets/checkmark.svg";
+import DismissIcon from "@/assets/dismiss.svg";
 
 import { useState } from "react";
 import { motion } from "motion/react";
@@ -13,6 +15,8 @@ interface OptionProps {
   selectedOption: string;
   letter: string;
   subject: Subject | null;
+  correctAnswer: string;
+  hasSubmitted: boolean;
   onClick: () => void;
 }
 
@@ -21,18 +25,24 @@ export default function Option({
   selectedOption,
   letter,
   subject,
+  correctAnswer,
+  hasSubmitted,
   onClick,
 }: OptionProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredOption, setHoveredOption] = useState("");
 
   function handleHoverStart(option: string) {
-    setHoveredOption(option);
-    setIsHovering(true);
+    if (!hasSubmitted) {
+      setHoveredOption(option);
+      setIsHovering(true);
+    }
   }
 
   function handleHoverEnd() {
-    setIsHovering(false);
+    if (!hasSubmitted) {
+      setIsHovering(false);
+    }
   }
 
   return (
@@ -49,22 +59,45 @@ export default function Option({
       onHoverEnd={() => handleHoverEnd()}
     >
       <LinkButton
-        className={`${rubikMedium.className} text-lg lg:text-[1.375rem] rounded-3xl`}
+        className={clsx(
+          `${rubikMedium.className} text-lg justify-between lg:text-[1.375rem] rounded-3xl`,
+          hasSubmitted && "cursor-not-allowed",
+        )}
         onClick={() => onClick()}
       >
-        <motion.div
-          className={clsx(
-            `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 transition`,
-            isHovering && hoveredOption === option
-              ? `${subject?.buttonBackgroundColor} text-(--white)`
-              : selectedOption === option
+        <div className="flex">
+          <motion.div
+            className={clsx(
+              `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 transition`,
+              isHovering && hoveredOption === option
                 ? `${subject?.buttonBackgroundColor} text-(--white)`
-                : "bg-(--grey-50) text-(--grey-500)",
-          )}
-        >
-          {letter}
-        </motion.div>
-        {option}
+                : selectedOption === option
+                  ? `${subject?.buttonBackgroundColor} text-(--white)`
+                  : "bg-(--grey-50) text-(--grey-500)",
+            )}
+          >
+            {letter}
+          </motion.div>
+          {option}
+        </div>
+        <div className="justify-self-end">
+          <CheckmarkIcon
+            className={clsx(
+              "text-(--green-500)",
+              hasSubmitted && option === correctAnswer ? "block" : "hidden",
+            )}
+          />
+          <DismissIcon
+            className={clsx(
+              "text-(--red-500)",
+              hasSubmitted && selectedOption === option
+                ? selectedOption !== correctAnswer
+                  ? "block"
+                  : "hidden"
+                : "hidden",
+            )}
+          />
+        </div>
       </LinkButton>
     </motion.li>
   );
