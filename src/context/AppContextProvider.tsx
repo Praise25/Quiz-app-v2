@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { createContext } from "react";
 import { useState } from "react";
@@ -30,10 +30,6 @@ export default function AppContextProvider({
 
   async function selectSubject(subject: Subject) {
     const foundSubject = await getSubject(subject.title);
-    // console.log("Found subject:", foundSubject);
-    // console.log("Subject passed to selectSubject:", subject);
-    // console.log("Merged subject:", { ...subject, ...foundSubject });
-
     setActiveSubject({ ...subject, ...foundSubject });
   }
 
