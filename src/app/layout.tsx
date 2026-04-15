@@ -37,6 +37,7 @@ export default function RootLayout({
           src={semiCircleImg3}
           alt="Semi-circle decoration at bottom right corner"
           className="absolute bottom-0 right-0 z-0 hidden xl:block"
+          loading="eager"
         />
         <AppContextProvider>
           <Navbar />
