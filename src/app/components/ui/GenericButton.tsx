@@ -2,7 +2,7 @@ import { motion, type HTMLMotionProps } from "motion/react";
 
 interface GenericButtonProps extends HTMLMotionProps<"button"> {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 export default function GenericButton({
