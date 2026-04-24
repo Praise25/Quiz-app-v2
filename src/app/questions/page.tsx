@@ -3,10 +3,10 @@
 import Option from "./components/Option";
 import ProgressBar from "@/app/components/ui/ProgressBar";
 import DismissIcon from "@/assets/dismiss.svg";
+import GenericButton from "../components/ui/GenericButton";
 import clsx from "clsx";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { rubikItalic, rubikMedium } from "@/fonts/rubikFonts";
 import { useAppContext } from "@/hooks/useAppContext";
 
@@ -110,19 +110,19 @@ export default function Questions() {
           ))}
         </ul>
 
-        <motion.button
+        <GenericButton
           className={clsx(
-            `${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8`,
+            `${rubikMedium.className} ${activeSubject.buttonBackgroundColor || "bg-(--purple-600)"}`,
             isHovering && activeSubject.hoverBackgroundColor,
             hasAttemptedSubmission && !selectedOption && "opacity-50",
           )}
-          onClick={handleSubmitAnswer}
           type="button"
+          onClick={handleSubmitAnswer}
           onHoverStart={handleHoverStart}
           onHoverEnd={handleHoverEnd}
         >
           {hasSubmitted ? "Next Question" : "Submit Answer"}
-        </motion.button>
+        </GenericButton>
         <div
           className={clsx(
             "flex justify-center items-center text-(--red-500) pl-1 gap-2",
