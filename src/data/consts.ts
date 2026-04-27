@@ -4,10 +4,15 @@ import JsIcon from "@/assets/js-icon.svg";
 import AccessibilityIcon from "@/assets/accessibility-icon.svg";
 
 export interface Question {
-  id?: number;
+  id?: number; // created and assigned when processing data in processData utility fule
   question: string;
   options: string[];
   answer: string;
+}
+export interface Answer {
+  id?: number;
+  chosenAnswer: string;
+  isCorrect: boolean;
 }
 export interface Subject {
   id: number;

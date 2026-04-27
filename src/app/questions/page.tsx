@@ -9,24 +9,28 @@ import clsx from "clsx";
 import { useState } from "react";
 import { rubikItalic, rubikMedium } from "@/fonts/rubikFonts";
 import { useAppContext } from "@/hooks/useAppContext";
+import { type Answer } from "@/data/consts";
+import { useRouter } from "next/navigation";
 
 const optionLetters = ["A", "B", "C", "D", "E"];
 
 export default function Questions() {
-  const { activeSubject } = useAppContext();
+  const { activeSubject, recordAnswer } = useAppContext();
   const [selectedOption, setSelectedOption] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [hasAttemptedSubmission, setHasAttemptedSubmission] = useState(false);
+  const router = useRouter();
 
   const questions = activeSubject.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
     id: 0,
     question: "No question available",
     options: [],
-    answer: "",
+    correctAnswer: "",
   };
+  const onLastQuestion = currentQuestionIndex === questions.length - 1;
 
   function handleSelectOption(option: string) {
     if (!hasSubmitted) {
@@ -39,6 +43,14 @@ export default function Questions() {
 
     if (!hasSubmitted && selectedOption) {
       setHasSubmitted(true);
+
+      const answer: Answer = {
+        id: activeQuestion.id,
+        chosenAnswer: selectedOption,
+        isCorrect: selectedOption === activeQuestion.answer,
+      };
+
+      recordAnswer(answer);
     }
 
     if (hasSubmitted) {
@@ -49,9 +61,13 @@ export default function Questions() {
         if (prev < questions.length - 1) {
           return prev + 1;
         } else {
-          return 0; // or reset to 0 if you want to loop back to the first question
+          return prev;
         }
       });
+
+      if (onLastQuestion) {
+        router.push("score");
+      }
     }
   }
 
@@ -121,7 +137,11 @@ export default function Questions() {
           onHoverStart={handleHoverStart}
           onHoverEnd={handleHoverEnd}
         >
-          {hasSubmitted ? "Next Question" : "Submit Answer"}
+          {hasSubmitted
+            ? onLastQuestion
+              ? "View Score"
+              : "Next Question"
+            : "Submit Answer"}
         </GenericButton>
         <div
           className={clsx(

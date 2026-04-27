@@ -4,25 +4,31 @@ import Logo from "@/app/components/Logo";
 import AccessibilityIcon from "@/assets/accessibility-icon.svg";
 import GenericButton from "@/app/components/ui/GenericButton";
 
-// import { useAppContext } from "@/hooks/useAppContext";
+import { useAppContext } from "@/hooks/useAppContext";
 import { rubikMedium } from "@/fonts/rubikFonts";
-
-const activeSubject = {
-  id: 1,
-  title: "Accessibility",
-  icon: AccessibilityIcon,
-  iconColor: "text-(--purple-600)",
-  iconBackgroundColor: "bg-(--purple-100)",
-  hexBackgroundColor: "#f6e7ff",
-  hexForegroundColor: "#a729f5",
-  hexHoverColor: "#9429d6",
-  buttonBackgroundColor: "bg-(--purple-600)",
-  hoverBackgroundColor: "bg-(--purple-750)",
-  hoverBorderColor: "border-(--purple-600)",
-};
+import { useRouter } from "next/navigation";
 
 export default function ScoreDisplay() {
-  // const { activeSubject } = useAppContext();
+  const { activeSubject, answers, resetQuiz } = useAppContext();
+  const router = useRouter();
+
+  let score = 0;
+
+  function calculateScore() {
+    answers.forEach((answer) => {
+      if (answer.isCorrect) {
+        score++;
+      }
+    });
+  }
+
+  function returnToHome() {
+    router.push("/");
+    resetQuiz();
+  }
+
+  calculateScore();
+  console.log(answers);
 
   return (
     <>
@@ -39,12 +45,12 @@ export default function ScoreDisplay() {
         <p
           className={`${rubikMedium.className} text-center text-[5.5rem]/[100%] md:text-[8rem]/[100%]`}
         >
-          8
+          {score}
         </p>
         <p
           className={`${rubikMedium.className} text-center text-lg/[100%] text-(--grey-500) md:text-xl/[100%]`}
         >
-          out of 10
+          out of {activeSubject.questions?.length}
         </p>
       </div>
       <GenericButton
@@ -53,6 +59,7 @@ export default function ScoreDisplay() {
         whileHover={{ backgroundColor: activeSubject.hexHoverColor }}
         // add whileTap to other buttons on questions page
         whileTap={{ backgroundColor: activeSubject.hexHoverColor }}
+        onClick={returnToHome}
       >
         Play Again
       </GenericButton>
