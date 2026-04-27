@@ -9,7 +9,7 @@ import { rubikMedium } from "@/fonts/rubikFonts";
 import { useRouter } from "next/navigation";
 
 export default function ScoreDisplay() {
-  const { activeSubject, answers, resetQuiz } = useAppContext();
+  const { activeSubject, answers } = useAppContext();
   const router = useRouter();
 
   let score = 0;
@@ -24,7 +24,6 @@ export default function ScoreDisplay() {
 
   function returnToHome() {
     router.push("/");
-    resetQuiz();
   }
 
   calculateScore();

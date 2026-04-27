@@ -44,6 +44,7 @@ export default function AppContextProvider({
   }
 
   function resetQuiz() {
+    setActiveSubject({} as Subject);
     setAnswers([]);
   }
 

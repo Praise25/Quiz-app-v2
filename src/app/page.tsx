@@ -1,7 +1,17 @@
+"use client";
+
 import SubjectList from "./components/SubjectList";
 import { rubikLight, rubikMedium, rubikItalic } from "@/fonts/rubikFonts";
+import { useEffect } from "react";
+import { useAppContext } from "@/hooks/useAppContext";
 
 export default function Home() {
+  const { resetQuiz } = useAppContext();
+
+  useEffect(() => {
+    resetQuiz();
+  }, [resetQuiz]);
+
   return (
     <main className="mt-8 relative z-100 lg:flex lg:mt-12 ">
       <header className="lg:flex lg:flex-col lg:flex-1">
