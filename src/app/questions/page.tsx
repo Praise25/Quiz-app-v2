@@ -105,7 +105,10 @@ export default function Questions() {
           innerDivStyle={`h-2 rounded-full ${activeSubject.primaryBackgroundColor}`}
           initial={{ width: "0" }}
           animate={{
-            width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
+            width:
+              questions.length === 0
+                ? "0%"
+                : `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
           }}
         />
       </div>
