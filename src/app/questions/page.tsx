@@ -102,7 +102,7 @@ export default function Questions() {
         {/* custom progress bar to enable animation in it */}
         <ProgressBar
           outerDivStyle="flex border-6 border-white rounded-full bg-(--white) lg:mb-20 lg:border-2"
-          innerDivStyle={`h-2 rounded-full ${activeSubject.buttonBackgroundColor}`}
+          innerDivStyle={`h-2 rounded-full ${activeSubject.primaryBackgroundColor}`}
           initial={{ width: "0" }}
           animate={{
             width: `${((activeQuestion?.id || 1) / questions.length) * 100}%`,
@@ -128,7 +128,7 @@ export default function Questions() {
 
         <GenericButton
           className={clsx(
-            `${rubikMedium.className} ${activeSubject.buttonBackgroundColor || "bg-(--purple-600)"}`,
+            `${rubikMedium.className} ${activeSubject.primaryBackgroundColor || "bg-(--purple-600)"}`,
             isHovering && activeSubject.hoverBackgroundColor,
             hasAttemptedSubmission && !selectedOption && "opacity-50",
           )}

@@ -24,7 +24,7 @@ export interface Subject {
   hexBackgroundColor: string;
   hexForegroundColor: string;
   hexHoverColor: string;
-  buttonBackgroundColor: string;
+  primaryBackgroundColor: string;
   hoverBackgroundColor: string;
   hoverBorderColor: string;
 }
@@ -39,7 +39,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#fff5ed",
     hexForegroundColor: "#ff7e35",
     hexHoverColor: "#db6c2c",
-    buttonBackgroundColor: "bg-(--orange-400)",
+    primaryBackgroundColor: "bg-(--orange-400)",
     hoverBackgroundColor: "bg-(--orange-550)",
     hoverBorderColor: "border-(--orange-400)"
   },
@@ -52,7 +52,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#e0fdef",
     hexForegroundColor: "#2fd887",
     hexHoverColor: "#26ac6b",
-    buttonBackgroundColor: "bg-(--green-500)",
+    primaryBackgroundColor: "bg-(--green-500)",
     hoverBackgroundColor: "bg-(--green-650)",
     hoverBorderColor: "border-(--green-500)",
   },
@@ -65,7 +65,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#ebf0ff",
     hexForegroundColor: "#306aff",
     hexHoverColor: "#295de0",
-    buttonBackgroundColor: "bg-(--blue-500)",
+    primaryBackgroundColor: "bg-(--blue-500)",
     hoverBackgroundColor: "bg-(--blue-650)",
     hoverBorderColor: "border-(--blue-500)",
   },
@@ -78,7 +78,7 @@ export const SUBJECTS = [
     hexBackgroundColor: "#f6e7ff",
     hexForegroundColor: "#a729f5",
     hexHoverColor: "#9429d6",
-    buttonBackgroundColor: "bg-(--purple-600)",
+    primaryBackgroundColor: "bg-(--purple-600)",
     hoverBackgroundColor: "bg-(--purple-750)",
     hoverBorderColor: "border-(--purple-600)",
   },

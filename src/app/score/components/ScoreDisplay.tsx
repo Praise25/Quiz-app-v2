@@ -54,7 +54,7 @@ export default function ScoreDisplay() {
         </p>
       </div>
       <GenericButton
-        className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject.buttonBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8 md:text-xl/[100%]`}
+        className={`${rubikMedium.className} text-lg/[100%] text-(--white) flex justify-center items-center w-full h-14 p-4 my-4 rounded-xl ${activeSubject.primaryBackgroundColor || "bg-(--purple-600)"} shadow-[0 16px 40px rgb(143 160 193 / 14%)] transition sm:my-8 md:text-xl/[100%]`}
         type="button"
         whileHover={{ backgroundColor: activeSubject.hexHoverColor }}
         // add whileTap to other buttons on questions page

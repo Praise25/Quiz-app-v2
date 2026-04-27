@@ -70,9 +70,9 @@ export default function Option({
             className={clsx(
               `flex justify-center items-center w-10 h-10 mr-4 rounded-md p-2 transition`,
               isHovering && hoveredOption === option
-                ? `${subject?.buttonBackgroundColor} text-(--white)`
+                ? `${subject?.primaryBackgroundColor} text-(--white)`
                 : selectedOption === option
-                  ? `${subject?.buttonBackgroundColor} text-(--white)`
+                  ? `${subject?.primaryBackgroundColor} text-(--white)`
                   : "bg-(--grey-50) text-(--grey-500)",
             )}
           >
