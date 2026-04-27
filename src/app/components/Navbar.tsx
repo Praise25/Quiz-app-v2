@@ -39,7 +39,7 @@ export default function Navbar() {
       <div className="navbar-end">
         <SunIcon className="w-4 h-4 text-(--grey-500)" />
         <input
-          className="toggle toggle-md bg-(--purple-600) text-white px-1 py-3 mx-2"
+          className={`toggle toggle-md ${activeSubject.primaryBackgroundColor || "bg-(--purple-600)"} text-white px-1 py-3 mx-2`}
           type="checkbox"
         />
         <MoonIcon className="w-4 h-4 text-(--grey-500)" />
