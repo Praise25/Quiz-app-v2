@@ -11,7 +11,7 @@ interface AppContextType {
   theme: Theme;
   toggleTheme: () => void;
   activeSubject: Subject;
-  selectSubject: (subject: Subject) => void;
+  selectSubject: (subject: Subject) => Promise<void>;
   answers: Answer[];
   recordAnswer: (answer: Answer) => void;
   resetQuiz: () => void;

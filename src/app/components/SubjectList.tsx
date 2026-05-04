@@ -10,8 +10,8 @@ import { useAppContext } from "@/hooks/useAppContext";
 export default function SubjectList() {
   const { selectSubject } = useAppContext();
 
-  function handleSelectSubject(subject: Subject) {
-    selectSubject(subject);
+  async function handleSelectSubject(subject: Subject) {
+    await selectSubject(subject);
   }
 
   return (
