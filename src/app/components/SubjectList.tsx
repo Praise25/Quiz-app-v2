@@ -30,7 +30,7 @@ export default function SubjectList() {
             <LinkButton
               className={`${rubikMedium.className} text-lg rounded-xl`} 
               onClick={() => handleSelectSubject(subject)}
-              href="/questions"
+              href={`/questions/${subject.title}`}
             >
               <div
                 className={`mr-4 rounded-md p-2 ${subject.iconBackgroundColor}`}

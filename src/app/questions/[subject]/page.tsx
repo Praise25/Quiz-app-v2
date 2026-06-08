@@ -3,7 +3,7 @@
 import Option from "./components/Option";
 import ProgressBar from "@/app/components/ui/ProgressBar";
 import DismissIcon from "@/assets/dismiss.svg";
-import GenericButton from "../components/ui/GenericButton";
+import GenericButton from "../../components/ui/GenericButton";
 import clsx from "clsx";
 
 import { useState } from "react";
@@ -15,15 +15,14 @@ import { useRouter } from "next/navigation";
 const optionLetters = ["A", "B", "C", "D", "E"];
 
 export default function Questions() {
-  // await new Promise((resolve) => setTimeout(resolve, 1000))
   const { activeSubject, isLoading, recordAnswer } = useAppContext();
   const [selectedOption, setSelectedOption] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [hasAttemptedSubmission, setHasAttemptedSubmission] = useState(false);
+  
   const router = useRouter();
-
   const questions = activeSubject.questions || [];
   const activeQuestion = questions[currentQuestionIndex] || {
     id: 0,
