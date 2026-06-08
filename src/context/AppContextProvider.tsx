@@ -37,10 +37,12 @@ export default function AppContextProvider({
   async function selectSubject(subject: Subject) {
     setIsLoading(true);
     const foundSubject = await getSubject(subject.title);
-    setTimeout(() => {
-      setActiveSubject({ ...subject, ...foundSubject });
-      setIsLoading(false);
-    }, 1000);
+    setActiveSubject({ ...subject, ...foundSubject });
+    setIsLoading(false);
+    // setTimeout(() => {
+    //   setActiveSubject({ ...subject, ...foundSubject });
+    //   setIsLoading(false);
+    // }, 1000);
   }
 
   function recordAnswer(answer: Answer) {
