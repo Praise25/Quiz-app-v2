@@ -4,7 +4,7 @@ import LinkButton from "@/app/components/ui/LinkButton";
 
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { motion } from "motion/react";
-import { Subject, SUBJECTS } from "@/data/consts";
+import { type Subject, SUBJECTS } from "@/data/consts";
 import { useAppContext } from "@/hooks/useAppContext";
 
 export default function SubjectList() {
