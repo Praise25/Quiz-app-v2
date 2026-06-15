@@ -14,7 +14,7 @@ export default function ScoreDisplay() {
   const router = useRouter();
 
   const activeSubject = SUBJECTS.find(
-    (subject) => subject.title === answers[0].subjectTitle,
+    (subject) => subject.title === answers[0]?.subjectTitle,
   );
 
   let score = 0;
