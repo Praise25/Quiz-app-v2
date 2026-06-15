@@ -3,15 +3,12 @@
 import { createContext } from "react";
 import { useState } from "react";
 import { type Subject, type Answer } from "@/data/consts";
-import { getSubjectQuiz } from "@/utils/processData";
 
 type Theme = "light" | "dark";
 
 interface AppContextType {
   theme: Theme;
   toggleTheme: () => void;
-  activeSubject: Subject;
-  selectSubject: (subject: Subject) => Promise<void>;
   answers: Answer[];
   recordAnswer: (answer: Answer) => void;
   resetQuiz: () => void;
@@ -25,16 +22,10 @@ export default function AppContextProvider({
   children: React.ReactNode;
 }) {
   const [theme, setTheme] = useState<Theme>("light");
-  const [activeSubject, setActiveSubject] = useState<Subject>({} as Subject);
   const [answers, setAnswers] = useState<Answer[]>([]);
 
   function toggleTheme() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  }
-
-  async function selectSubject(subject: Subject) {
-    const foundSubjectQuiz = await getSubjectQuiz(subject.title);
-    setActiveSubject({ ...subject, ...foundSubjectQuiz });
   }
 
   function recordAnswer(answer: Answer) {
@@ -44,15 +35,12 @@ export default function AppContextProvider({
   }
 
   function resetQuiz() {
-    setActiveSubject({} as Subject);
     setAnswers([]);
   }
 
   const ctxValue: AppContextType = {
     theme,
     toggleTheme,
-    activeSubject,
-    selectSubject,
     answers,
     recordAnswer,
     resetQuiz,

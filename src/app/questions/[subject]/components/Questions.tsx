@@ -50,6 +50,7 @@ export default function Questions({ activeSubject }: QuestionsProps) {
 
       const answer: Answer = {
         id: activeQuestion.id,
+        subjectTitle: activeSubject.title,
         chosenAnswer: selectedOption,
         isCorrect: selectedOption === activeQuestion.answer,
       };

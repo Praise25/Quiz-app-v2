@@ -11,6 +11,7 @@ export interface Question {
 }
 export interface Answer {
   id?: number;
+  subjectTitle: string;
   chosenAnswer: string;
   isCorrect: boolean;
 }

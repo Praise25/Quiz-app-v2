@@ -9,20 +9,13 @@ import Logo from "./Logo";
 
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { usePathname, useParams } from "next/navigation";
-import { useAppContext } from "@/hooks/useAppContext";
 import { SUBJECTS } from "@/data/consts";
 
 export default function Navbar() {
   const currentPath = usePathname();
-  const { activeSubject: contextSubject } = useAppContext();
   const { subject: subjectTitle } = useParams();
 
-  const activeSubject = subjectTitle
-    ? SUBJECTS.find((subject) => subject.title === subjectTitle)
-    : contextSubject;
-
-  console.log("Context Subject: ", contextSubject);
-  console.log("Active Subject: ", activeSubject);
+  const activeSubject = SUBJECTS.find((subject) => subject.title === subjectTitle)
   const Icon = activeSubject?.icon || AccessibilityIcon;
 
   return (
