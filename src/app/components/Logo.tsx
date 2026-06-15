@@ -5,7 +5,7 @@ interface LogoProps {
   iconStyles: string;
   iconContainerStyles: string;
   logoTextStyles: string;
-  subject: Subject;
+  subject: Subject | undefined;
 }
 
 export default function Logo({
@@ -20,7 +20,7 @@ export default function Logo({
       <div className={iconContainerStyles}>
         <Icon className={iconStyles} />
       </div>
-      <p className={logoTextStyles}>{subject.title}</p>
+      <p className={logoTextStyles}>{subject?.title}</p>
     </>
   );
 }

@@ -8,46 +8,50 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 import { rubikMedium } from "@/fonts/rubikFonts";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import { useAppContext } from "@/hooks/useAppContext";
+import { SUBJECTS } from "@/data/consts";
 
 export default function Navbar() {
   const currentPath = usePathname();
-  const { activeSubject, isLoading } = useAppContext();
+  const { activeSubject: contextSubject } = useAppContext();
+  const { subject: subjectTitle } = useParams();
 
-  const Icon = activeSubject.icon || AccessibilityIcon;
+  const activeSubject = subjectTitle
+    ? SUBJECTS.find((subject) => subject.title === subjectTitle)
+    : contextSubject;
+
+  console.log("Context Subject: ", contextSubject);
+  console.log("Active Subject: ", activeSubject);
+  const Icon = activeSubject?.icon || AccessibilityIcon;
 
   return (
     <div className="navbar pt-4 relative z-100">
-      {!isLoading && (
-        <>
-          <div className="navbar-start">
-            <Link href="/" className="flex justify-center items-center gap-6">
-              <Logo
-                subject={activeSubject}
-                Icon={Icon}
-                iconContainerStyles={clsx(
-                  `flex justify-center items-center p-2 ${activeSubject.iconBackgroundColor} rounded-sm`,
-                  currentPath === "/" && "hidden",
-                )}
-                iconStyles={`${activeSubject.iconColor}`}
-                logoTextStyles={clsx(
-                  `${rubikMedium.className} text-(--blue-900) text-2xl`,
-                  currentPath === "/" && "hidden",
-                )}
-              />
-            </Link>
-          </div>
-          <div className="navbar-end">
-            <SunIcon className="w-4 h-4 text-(--grey-500)" />
-            <input
-              className={`toggle toggle-md ${activeSubject.primaryBackgroundColor || "bg-(--purple-600)"} text-white px-1 py-3 mx-2`}
-              type="checkbox"
-            />
-            <MoonIcon className="w-4 h-4 text-(--grey-500)" />
-          </div>
-        </>
-      )}
+      <div className="navbar-start">
+        <Link href="/" className="flex justify-center items-center gap-6">
+          <Logo
+            subject={activeSubject}
+            Icon={Icon}
+            iconContainerStyles={clsx(
+              `flex justify-center items-center p-2 ${activeSubject?.iconBackgroundColor} rounded-sm`,
+              currentPath === "/" && "hidden",
+            )}
+            iconStyles={`${activeSubject?.iconColor}`}
+            logoTextStyles={clsx(
+              `${rubikMedium.className} text-(--blue-900) text-2xl`,
+              currentPath === "/" && "hidden",
+            )}
+          />
+        </Link>
+      </div>
+      <div className="navbar-end">
+        <SunIcon className="w-4 h-4 text-(--grey-500)" />
+        <input
+          className={`toggle toggle-md ${activeSubject?.primaryBackgroundColor || "bg-(--purple-600)"} text-white px-1 py-3 mx-2`}
+          type="checkbox"
+        />
+        <MoonIcon className="w-4 h-4 text-(--grey-500)" />
+      </div>
     </div>
   );
 }

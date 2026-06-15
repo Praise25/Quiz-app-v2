@@ -1,10 +1,10 @@
-"use server"
+"use server";
 
 import { readFile, writeFile } from "fs/promises";
 import { type Question } from "@/data/consts";
 
 export async function addIdToQuestions() {
-  const filePath = "src/data/data.json"
+  const filePath = "src/data/data.json";
   const data = await readFile(filePath, "utf-8");
   const { quizzes } = JSON.parse(data);
 
@@ -23,7 +23,7 @@ export async function addIdToQuestions() {
   await writeFile(filePath, JSON.stringify({ quizzes: updatedQuizzes }));
 }
 
-export async function getSubject(subjectTitle: string) {
+export async function getSubjectQuiz(subjectTitle: string) {
   const data = await readFile("src/data/data.json", "utf-8");
   const { quizzes } = JSON.parse(data);
   const subject = quizzes.find(

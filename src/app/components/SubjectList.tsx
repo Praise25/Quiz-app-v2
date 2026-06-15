@@ -11,7 +11,7 @@ export default function SubjectList() {
   const { selectSubject } = useAppContext();
 
   async function handleSelectSubject(subject: Subject) {
-    await selectSubject(subject);
+    // await selectSubject(subject);
   }
 
   return (
