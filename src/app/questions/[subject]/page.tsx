@@ -19,6 +19,7 @@ export default async function Page({ params }: PageProps) {
     // remove icon property to stop the error thrown from passing a function in an object as a prop,
     // from a server component to a client component
     const { icon: _icon, ...completeSubjectWithoutIcon } = completeSubject;
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     return <Questions activeSubject={completeSubjectWithoutIcon} />;
   } else {
