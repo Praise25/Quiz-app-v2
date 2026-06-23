@@ -7,15 +7,13 @@ import GenericButton from "@/app/components/ui/GenericButton";
 import { useAppContext } from "@/hooks/useAppContext";
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { useRouter } from "next/navigation";
-import { SUBJECTS } from "@/data/consts";
+import { getSubjectData } from "@/utils/helper";
 
 export default function ScoreDisplay() {
   const { answers } = useAppContext();
   const router = useRouter();
 
-  const activeSubject = SUBJECTS.find(
-    (subject) => subject.title === answers[0]?.subjectTitle,
-  );
+  const activeSubject = getSubjectData(answers[0]?.subjectTitle)
 
   let score = 0;
 

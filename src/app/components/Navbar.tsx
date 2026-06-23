@@ -9,13 +9,15 @@ import Logo from "./Logo";
 
 import { rubikMedium } from "@/fonts/rubikFonts";
 import { usePathname, useParams } from "next/navigation";
-import { SUBJECTS } from "@/data/consts";
+import { getSubjectData } from "@/utils/helper";
 
 export default function Navbar() {
   const currentPath = usePathname();
   const { subject: subjectTitle } = useParams();
 
-  const activeSubject = SUBJECTS.find((subject) => subject.title === subjectTitle)
+  // type narrowing to help resolve issue where typescript complains about the type of subjectTitle being ParamValue
+  const resolvedTitle = typeof subjectTitle === "string" ? subjectTitle : undefined;
+  const activeSubject = resolvedTitle ? getSubjectData(resolvedTitle) : undefined;
   const Icon = activeSubject?.icon || AccessibilityIcon;
 
   return (
