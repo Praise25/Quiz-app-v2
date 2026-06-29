@@ -16,7 +16,7 @@ export default function Loading() {
   return (
     <div className="flex justify-center items-center h-[70vh]">
       <div
-        className={`loading loading-spinner ${activeSubject?.iconColor} w-4/10`}
+        className={`loading loading-spinner ${activeSubject?.iconColor} w-1/10`}
       ></div>
     </div>
   );
